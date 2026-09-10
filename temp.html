@@ -262,7 +262,7 @@
         <h1>Ravindran Mani<br>IT &amp; Cloud Operations Leader</h1>
         <p class="lede">22+ years leading enterprise infrastructure and 24x7 global cloud operations across regulated life sciences and eClinical SaaS, in the US and India.</p>
         <div class="hero-links">
-          <a href="mailto:ravindran.mani@yahoo.com">ravindran.mani@yahoo.com</a>
+          <a href="#" class="email-link" data-user="ravindran.mani" data-domain="yahoo.com">Email</a>
           <a href="https://linkedin.com/in/ravindranmani" target="_blank" rel="noopener">linkedin.com/in/ravindranmani</a>
           <span class="loc">Open to Leadership Role / Enterprise Cloud / Infrastructure Governance &amp; Security leadership roles</span>
         </div>
@@ -338,11 +338,11 @@
       <div class="tech-groups">
         <div class="tech-group">
           <h3>Cloud &amp; infrastructure</h3>
-          <div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Windows Server</span><span class="tag">SharePoint</span><span class="tag">Microsoft 365</span></div>
+          <div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Windows Server</span><span class="tag">SharePoint</span><span class="tag">SharePoint Online</span><span class="tag">Microsoft 365</span></div>
         </div>
         <div class="tech-group">
           <h3>Automation &amp; DevOps</h3>
-          <div class="tags"><span class="tag">PowerShell</span><span class="tag">Terraform</span><span class="tag">Bicep</span><span class="tag">ARM templates</span><span class="tag">Azure DevOps</span><span class="tag">TFS</span><span class="tag">GitHub</span><span class="tag">CI/CD</span></div>
+          <div class="tags"><span class="tag">PowerShell</span><span class="tag">PnP PowerShell</span><span class="tag">Power Automate</span><span class="tag">Terraform</span><span class="tag">Bicep</span><span class="tag">ARM templates</span><span class="tag">Azure DevOps</span><span class="tag">TFS</span><span class="tag">GitHub</span><span class="tag">CI/CD</span></div>
         </div>
         <div class="tech-group">
           <h3>Data &amp; reporting</h3>
@@ -407,6 +407,8 @@
             <li>Owned enterprise SharePoint Server and SharePoint Online/M365 architecture for a GxP-regulated eClinical platform.</li>
             <li>Designed SharePoint farm topology, site/information architecture, and hybrid on-premises-to-cloud integration across the enterprise.</li>
             <li>Led migrations from on-premises SharePoint to SharePoint Online and Azure-hosted infrastructure with no data loss.</li>
+            <li>Automated SharePoint Online site provisioning, permissions, and governance using PnP PowerShell and Power Automate, reducing manual setup across hundreds of sites.</li>
+            <li>Integrated SharePoint Online with BambooHR to sync employee, org-structure, and onboarding data into intranet and team sites.</li>
             <li>Performed multiple version-to-version SharePoint upgrades and migrations across 2003, 2007, 2010, 2013, 2016, and 2019.</li>
             <li>Performed TFS server upgrades, keeping build, work-item, and version-control infrastructure current and supported.</li>
             <li>Built and hardened CI/CD pipelines and infrastructure-as-code to standardize deployments and eliminate configuration drift.</li>
@@ -460,6 +462,7 @@
           <h3 class="sub-head">Certifications</h3>
           <ul class="cert-list">
             <li><div class="item-title">Microsoft Certified: Azure Administrator Associate</div><div class="item-sub">Issued Jan 2023</div></li>
+            <li><div class="item-title">ISO 9001:2015 &amp; ISO/IEC 27001:2022 Lead Auditor Training</div><div class="item-sub">BSI Training Academy · Issued Apr 2025</div></li>
             <li><div class="item-title">MCTS: SharePoint 2010 Application Development and Configuration</div><div class="item-sub">Issued 2013</div></li>
             <li><div class="item-title">Microsoft Certified Professional</div><div class="item-sub">Issued Apr 2013</div></li>
             <li><div class="item-title">Google Cybersecurity Professional Certificate</div><div class="item-sub">In progress</div></li>
@@ -478,7 +481,7 @@
         <p>Open to conversations about IT and cloud leadership roles, and about where security and compliance leadership fits next.</p>
       </div>
       <ul class="contact-links">
-        <li><span class="label mono">Email</span><a href="mailto:ravindran.mani@yahoo.com">ravindran.mani@yahoo.com</a></li>
+        <li><span class="label mono">Email</span><a href="#" class="email-link" data-user="ravindran.mani" data-domain="yahoo.com">Email</a></li>
         <li><span class="label mono">LinkedIn</span><a href="https://linkedin.com/in/ravindranmani" target="_blank" rel="noopener">linkedin.com/in/ravindranmani</a></li>
         <li><span class="label mono">Location</span><span>Miami, Florida</span></li>
       </ul>
@@ -503,6 +506,13 @@
       links.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
     });
+  });
+  document.querySelectorAll('.email-link').forEach(function(el){
+    var user = el.getAttribute('data-user');
+    var domain = el.getAttribute('data-domain');
+    var email = user + '@' + domain;
+    el.setAttribute('href', 'mailto:' + email);
+    el.textContent = email;
   });
 </script>
 </body>
