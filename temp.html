@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ravindran Mani — IT &amp; Cloud Operations Leader</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230E2238'/%3E%3Ctext x='32' y='43' font-family='Georgia, Source Serif 4, serif' font-size='28' font-weight='600' fill='%23D79A45' text-anchor='middle'%3ERM%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Ravindran Mani — IT and Cloud Operations leader with 22+ years across regulated life sciences and eClinical SaaS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#081420;
+    --navy:#0E2238;
+    --line:#3E6E86;
+    --line-soft:rgba(62,110,134,0.35);
+    --paper:#F3F5F1;
+    --paper-raised:#E9ECE6;
+    --ink:#16232F;
+    --ink-soft:#4B5A66;
+    --accent:#D79A45;
+    --accent-soft:#EBC385;
+    --teal:#5E9C97;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    margin:0;
+    color:var(--navy);
+    font-weight:600;
+  }
+  a{color:inherit;}
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+  /* skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:0;
+    background:var(--accent); color:var(--navy-deep);
+    padding:10px 16px; z-index:200;
+  }
+  .skip-link:focus{ left:16px; top:16px; }
+
+  /* NAV */
+  header.site{
+    position:sticky; top:0; z-index:100;
+    background:rgba(8,20,32,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:'Source Serif 4', serif;
+    color:var(--paper);
+    font-size:1.05rem;
+    font-weight:600;
+    text-decoration:none;
+    letter-spacing:0.01em;
+  }
+  .brand span{ color:var(--accent); }
+  .navlinks{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+  .navlinks a{
+    color:#C9D3D9; text-decoration:none; font-size:0.92rem;
+    padding:6px 2px; border-bottom:1px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{ color:var(--paper); border-color:var(--accent); }
+  .navtoggle{ display:none; background:none; border:1px solid var(--line-soft); color:var(--paper); padding:8px 12px; border-radius:4px; }
+
+  @media (max-width:760px){
+    .navlinks{
+      position:absolute; top:64px; left:0; right:0;
+      background:var(--navy-deep); flex-direction:column; gap:0;
+      max-height:0; overflow:hidden; border-bottom:1px solid var(--line-soft);
+    }
+    .navlinks.open{ max-height:400px; }
+    .navlinks a{ display:block; padding:14px 32px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .navtoggle{ display:block; }
+  }
+
+  /* HERO */
+  .hero{
+    background:
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 72px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, var(--line-soft) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 64px);
+    opacity:0.35;
+    mask-image:radial-gradient(ellipse at 30% 30%, black 0%, transparent 75%);
+  }
+  .hero .wrap{ position:relative; display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center; }
+  @media (max-width:860px){ .hero .wrap{ grid-template-columns:1fr; } }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem; color:var(--accent-soft);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    color:var(--paper); font-size:clamp(2.1rem, 4.2vw, 3.1rem);
+    line-height:1.12; margin-bottom:18px;
+  }
+  .hero p.lede{
+    color:#C9D3D9; font-size:1.08rem; max-width:46ch; margin-bottom:28px;
+  }
+  .hero-links{ display:flex; flex-wrap:wrap; gap:14px 22px; font-size:0.94rem; }
+  .hero-links a{ text-decoration:none; color:var(--accent-soft); border-bottom:1px solid rgba(215,154,69,0.4); padding-bottom:2px; }
+  .hero-links a:hover{ color:var(--accent); border-color:var(--accent); }
+  .hero-links span.loc{ color:#8FA0AB; }
+
+  /* migration diagram */
+  .diagram{
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--line-soft);
+    border-radius:6px;
+    padding:24px 24px 18px;
+  }
+  .diagram-title{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:#8FA0AB; margin-bottom:16px; }
+  .bars{ display:flex; align-items:flex-end; gap:36px; height:150px; }
+  .bar-col{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+  .bar{ width:56px; background:linear-gradient(180deg, var(--teal), #3d6f6b); border-radius:3px 3px 0 0; position:relative; }
+  .bar.before{ height:100%; background:linear-gradient(180deg,#6b7d87,#4a5964); }
+  .bar.after{ height:56%; background:linear-gradient(180deg, var(--accent), #b87b2e); }
+  .bar-value{ font-family:'IBM Plex Mono', monospace; font-size:0.95rem; color:var(--paper); margin-bottom:8px; }
+  .bar-label{ font-size:0.78rem; color:#8FA0AB; margin-top:10px; }
+  .diagram-foot{ margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft); font-size:0.85rem; color:#C9D3D9; }
+  .diagram-foot strong{ color:var(--accent-soft); }
+
+  /* SECTIONS */
+  section{ padding:76px 0; }
+  section.alt{ background:var(--paper-raised); }
+  .section-head{ margin-bottom:36px; max-width:60ch; }
+  .section-head .kicker{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--teal); margin-bottom:8px; }
+  .section-head h2{ font-size:1.9rem; }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; }
+
+  /* about */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ margin:0 0 16px; color:var(--ink-soft); }
+  .stat-list{ list-style:none; margin:0; padding:0; border-top:1px solid #D9DDD3; }
+  .stat-list li{ display:flex; justify-content:space-between; gap:16px; padding:16px 0; border-bottom:1px solid #D9DDD3; }
+  .stat-list .num{ font-family:'IBM Plex Mono', monospace; color:var(--navy); font-weight:500; white-space:nowrap; }
+  .stat-list .desc{ color:var(--ink-soft); font-size:0.95rem; }
+
+  /* expertise cards */
+  .cards{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:#D9DDD3; border:1px solid #D9DDD3; }
+  @media (max-width:760px){ .cards{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .cards{ grid-template-columns:1fr; } }
+  .card{ background:var(--paper); padding:28px 26px; }
+  .card h3{ font-size:1.05rem; margin-bottom:10px; }
+  .card p{ color:var(--ink-soft); font-size:0.92rem; margin:0; }
+  .card .idx{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--teal); display:block; margin-bottom:12px; }
+
+  /* technology tags */
+  .tech-groups{ display:grid; grid-template-columns:repeat(2, 1fr); gap:32px 48px; }
+  @media (max-width:700px){ .tech-groups{ grid-template-columns:1fr; } }
+  .tech-group h3{ font-size:0.95rem; font-family:'IBM Plex Mono', monospace; color:var(--navy); font-weight:500; margin-bottom:14px; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
+    padding:6px 12px; border:1px solid #C7CDC0; border-radius:3px; color:var(--ink);
+    background:var(--paper);
+  }
+
+  /* timeline */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:#C7CDC0; }
+  .tl-item{ position:relative; padding-bottom:40px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-28px; top:6px; width:11px; height:11px;
+    border-radius:50%; background:var(--paper); border:2px solid var(--teal);
+  }
+  .tl-item.current::before{ background:var(--accent); border-color:var(--accent); }
+  .tl-date{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--teal); margin-bottom:6px; }
+  .tl-role{ font-size:1.15rem; margin-bottom:2px; }
+  .tl-org{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:12px; }
+  .tl-org a{ color:var(--navy); text-decoration:none; border-bottom:1px solid #C7CDC0; }
+  .tl-item ul{ margin:0; padding-left:20px; color:var(--ink-soft); font-size:0.95rem; }
+  .tl-item li{ margin-bottom:6px; }
+  .tl-item.condensed .tl-role{ font-size:1.02rem; }
+
+  /* education */
+  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media (max-width:760px){ .edu-grid{ grid-template-columns:1fr; } }
+  .edu-list, .cert-list{ list-style:none; margin:0; padding:0; }
+  .edu-list li, .cert-list li{ padding:14px 0; border-bottom:1px solid #D9DDD3; }
+  .edu-list li:first-child, .cert-list li:first-child{ padding-top:0; }
+  .item-title{ font-weight:600; color:var(--navy); }
+  .item-sub{ color:var(--ink-soft); font-size:0.9rem; margin-top:2px; }
+  h3.sub-head{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--teal); font-weight:500; margin-bottom:14px; }
+
+  /* contact */
+  .contact{ background:var(--navy-deep); color:var(--paper); }
+  .contact .wrap{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:center; }
+  @media (max-width:760px){ .contact .wrap{ grid-template-columns:1fr; } }
+  .contact h2{ color:var(--paper); font-size:2rem; margin-bottom:14px; }
+  .contact p{ color:#B9C4CC; max-width:48ch; }
+  .contact-links{ list-style:none; margin:0; padding:0; }
+  .contact-links li{ border-top:1px solid var(--line-soft); padding:16px 0; }
+  .contact-links li:last-child{ border-bottom:1px solid var(--line-soft); }
+  .contact-links a{ text-decoration:none; color:var(--paper); font-size:1.05rem; }
+  .contact-links a:hover{ color:var(--accent-soft); }
+  .contact-links .label{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--teal); margin-bottom:4px; }
+
+  footer{ padding:28px 0; text-align:center; color:var(--ink-soft); font-size:0.85rem; background:var(--paper); }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site">
+  <nav class="wrap">
+    <a class="brand" href="#top">Ravindran <span>Mani</span></a>
+    <button class="navtoggle" aria-expanded="false" aria-controls="navlinks" id="navBtn">Menu</button>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow mono">Miami, Florida</div>
+        <h1>Ravindran Mani<br>IT &amp; Cloud Operations Leader</h1>
+        <p class="lede">22+ years leading enterprise infrastructure and 24x7 global cloud operations across regulated life sciences and eClinical SaaS, in the US and India.</p>
+        <div class="hero-links">
+          <a href="mailto:ravindran.mani@yahoo.com">ravindran.mani@yahoo.com</a>
+          <a href="https://linkedin.com/in/ravindranmani" target="_blank" rel="noopener">linkedin.com/in/ravindranmani</a>
+          <span class="loc">Open to Leadership Role / Enterprise Cloud / Infrastructure Governance &amp; Security leadership roles</span>
+        </div>
+      </div>
+      <div class="diagram">
+        <div class="diagram-title">Server migration — eClinical SaaS platform</div>
+        <div class="bars">
+          <div class="bar-col">
+            <div class="bar-value">900</div>
+            <div class="bar before" style="height:100%"></div>
+            <div class="bar-label">VMs, before</div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-value">500</div>
+            <div class="bar after" style="height:56%"></div>
+            <div class="bar-label">VMs, after</div>
+          </div>
+        </div>
+        <div class="diagram-foot">Migrated 500+ critical servers to <strong>Azure</strong> and <strong>AWS</strong>, cutting the VM footprint <strong>44%</strong> with no loss of service to clinical customers.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker mono">About</div>
+        <h2>Infrastructure leadership built for regulated environments</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I lead enterprise IT and cloud operations for GxP-regulated eClinical SaaS platforms, owning a multi-million-dollar technology portfolio and the 24x7 global operations behind it. Most of my career has centered on one problem: keeping complex, highly regulated systems reliable while they migrate, scale, and modernize underneath the people using them.</p>
+          <p>That includes leading the migration of 500+ critical servers to Azure and AWS, running FinOps practices that govern cloud spend and forecasting, and building disaster recovery and access-control programs that satisfy GxP and HIPAA requirements. As my work has moved deeper into security and compliance oversight, I'm extending that experience formally &mdash; currently working through the Google Cybersecurity Professional Certificate to sharpen my grounding in threat detection, risk assessment, and incident response.</p>
+        </div>
+        <ul class="stat-list">
+          <li><span class="num">22+ yrs</span><span class="desc">IT and cloud operations, US and India</span></li>
+          <li><span class="num">70 subs</span><span class="desc">Azure landing zone architected end-to-end</span></li>
+          <li><span class="num">500+</span><span class="desc">Critical servers migrated to Azure and AWS</span></li>
+          <li><span class="num">44%</span><span class="desc">VM footprint reduction, no service loss</span></li>
+          <li><span class="num">24x7</span><span class="desc">Global operations for eClinical SaaS platforms</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="expertise">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker mono">Core expertise</div>
+        <h2>Where I focus</h2>
+        <p>The disciplines behind running regulated cloud infrastructure at scale.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><span class="idx mono">01</span><h3>IT strategy &amp; roadmaps</h3><p>Setting technology direction, capacity plans, and operational risk controls across the portfolio.</p></div>
+        <div class="card"><span class="idx mono">02</span><h3>Cloud migration &amp; consolidation</h3><p>Moving on-premises workloads, VMs, and data centers to Azure and AWS without disrupting service.</p></div>
+        <div class="card"><span class="idx mono">03</span><h3>FinOps &amp; budget ownership</h3><p>Governing cloud spend, IT budgets, and forecasting so infrastructure growth stays accountable.</p></div>
+        <div class="card"><span class="idx mono">04</span><h3>Vendor &amp; MSP governance</h3><p>Owning SLAs and KPIs across distributed teams, vendors, and managed service providers.</p></div>
+        <div class="card"><span class="idx mono">05</span><h3>Business continuity &amp; DR</h3><p>Designing disaster recovery strategy against defined RPO/RTO targets for regulated platforms.</p></div>
+        <div class="card"><span class="idx mono">06</span><h3>Security &amp; compliance oversight</h3><p>RBAC, conditional access, DLP, and audit logging built to meet GxP and HIPAA requirements.</p></div>
+        <div class="card"><span class="idx mono">07</span><h3>Azure landing zone architecture</h3><p>Designed and built a 70-subscription Azure landing zone from scratch &mdash; segmented subnets, centralized firewall, Application Gateway, and Front Door for global load balancing.</p></div>
+        <div class="card"><span class="idx mono">08</span><h3>SharePoint architecture</h3><p>Designed enterprise SharePoint farm topology and information architecture, and led version-to-version upgrades from 2003 through 2007, 2010, 2013, 2016, and 2019.</p></div>
+        <div class="card"><span class="idx mono">09</span><h3>Identity &amp; access management</h3><p>Designed identity architecture across Okta, Azure AD, and AWS IAM, with RBAC and conditional access enforced at the network perimeter.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="technology">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker mono">Technology</div>
+        <h2>Tools I work in</h2>
+      </div>
+      <div class="tech-groups">
+        <div class="tech-group">
+          <h3>Cloud &amp; infrastructure</h3>
+          <div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Windows Server</span><span class="tag">SharePoint</span><span class="tag">Microsoft 365</span></div>
+        </div>
+        <div class="tech-group">
+          <h3>Automation &amp; DevOps</h3>
+          <div class="tags"><span class="tag">PowerShell</span><span class="tag">Terraform</span><span class="tag">Bicep</span><span class="tag">ARM templates</span><span class="tag">Azure DevOps</span><span class="tag">TFS</span><span class="tag">GitHub</span><span class="tag">CI/CD</span></div>
+        </div>
+        <div class="tech-group">
+          <h3>Data &amp; reporting</h3>
+          <div class="tags"><span class="tag">SQL Server</span><span class="tag">SSRS</span><span class="tag">Tableau</span><span class="tag">ASP.NET</span></div>
+        </div>
+        <div class="tech-group">
+          <h3>Identity &amp; access</h3>
+          <div class="tags"><span class="tag">Okta</span><span class="tag">Azure AD (Entra ID)</span><span class="tag">AWS IAM</span><span class="tag">ADFS</span><span class="tag">RBAC</span><span class="tag">Conditional Access</span><span class="tag">DLP</span></div>
+        </div>
+        <div class="tech-group">
+          <h3>Monitoring &amp; observability</h3>
+          <div class="tags"><span class="tag">Azure Monitor</span><span class="tag">Site24x7</span><span class="tag">SolarWinds</span><span class="tag">Grafana</span><span class="tag">Datadog</span></div>
+        </div>
+        <div class="tech-group">
+          <h3>Networking (Azure &amp; AWS)</h3>
+          <div class="tags"><span class="tag">Azure Virtual Network</span><span class="tag">Azure VPN Gateway</span><span class="tag">Azure ExpressRoute</span><span class="tag">Azure Load Balancer</span><span class="tag">Azure Front Door</span><span class="tag">AWS VPC</span><span class="tag">AWS Direct Connect</span><span class="tag">AWS Route 53</span><span class="tag">AWS Elastic Load Balancing</span></div>
+        </div>
+        <div class="tech-group">
+          <h3>Endpoint &amp; device management</h3>
+          <div class="tags"><span class="tag">Microsoft Intune</span><span class="tag">Apple Business Manager</span><span class="tag">Windows</span><span class="tag">macOS</span><span class="tag">iOS / iPadOS</span><span class="tag">Android</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker mono">Experience</div>
+        <h2>Career history</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-date mono">Jan 2025 — Present</div>
+          <div class="tl-role">Director, IT and Cloud Operations</div>
+          <div class="tl-org">Global eClinical SaaS provider — Miami, Florida · On-site</div>
+          <ul>
+            <li>Lead enterprise infrastructure strategy and 24x7 global cloud operations for GxP-regulated eClinical SaaS platforms.</li>
+            <li>Architected an enterprise Azure landing zone from the ground up: 70 subscriptions, each segmented into 4 subnets, secured behind a centralized Azure Firewall with Application Gateway and Front Door for global load balancing.</li>
+            <li>Implemented enterprise MDM using Microsoft Intune across Windows, macOS, and mobile devices (iPad, iPhone, and Android), standardizing device compliance, enrollment, and security policy.</li>
+            <li>Integrated Microsoft Intune with Apple Business Manager to enable zero-touch enrollment and supervised management of Apple devices.</li>
+            <li>Led the migration of 500+ critical servers to Azure and AWS, cutting the VM footprint 44% (900 to 500 VMs) with no loss of service.</li>
+            <li>Govern cloud spend, IT budgets, and forecasting through FinOps; define roadmaps, capacity plans, and disaster recovery strategy.</li>
+            <li>Lead distributed technical teams and oversee vendors and MSPs with SLA and KPI ownership.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date mono">Jan 2024 — Dec 2024</div>
+          <div class="tl-role">Associate Director</div>
+          <div class="tl-org">Global eClinical SaaS provider — Bengaluru, India (remote) / Miami, US (on-site)</div>
+          <ul>
+            <li>Directed daily operations for eClinical Cloud Services, including 24x7 support, deployments, monitoring, and incident response.</li>
+            <li>Initiated data center consolidation and migration of VMs, SQL Server clusters, SharePoint, and application workloads to Azure.</li>
+            <li>Designed high-availability infrastructure across Azure availability zones with security monitoring and compliance guardrails.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date mono">Oct 2017 — Jul 2023</div>
+          <div class="tl-role">Senior SharePoint Administrator</div>
+          <div class="tl-org">eClinical software company — United States / Bengaluru, India</div>
+          <ul>
+            <li>Owned enterprise SharePoint Server and SharePoint Online/M365 architecture for a GxP-regulated eClinical platform.</li>
+            <li>Designed SharePoint farm topology, site/information architecture, and hybrid on-premises-to-cloud integration across the enterprise.</li>
+            <li>Led migrations from on-premises SharePoint to SharePoint Online and Azure-hosted infrastructure with no data loss.</li>
+            <li>Performed multiple version-to-version SharePoint upgrades and migrations across 2003, 2007, 2010, 2013, 2016, and 2019.</li>
+            <li>Performed TFS server upgrades, keeping build, work-item, and version-control infrastructure current and supported.</li>
+            <li>Built and hardened CI/CD pipelines and infrastructure-as-code to standardize deployments and eliminate configuration drift.</li>
+            <li>Implemented RBAC, conditional access, DLP, and audit logging to meet GxP and HIPAA compliance requirements.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date mono">Nov 2016 — Oct 2017</div>
+          <div class="tl-role">Technical Architect</div>
+          <div class="tl-org">Technology consulting firm — Audubon, Pennsylvania</div>
+          <ul>
+            <li>Defined site structures, content types, and hub networks to standardize information architecture.</li>
+            <li>Designed cloud and SharePoint architectures for CTMS and reporting platforms (SSRS, Power BI, Tableau).</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date mono">Jan 2015 — Oct 2016</div>
+          <div class="tl-role">Associate Technical Architect</div>
+          <div class="tl-org">Technology consulting firm — Mumbai, Maharashtra</div>
+          <ul>
+            <li>Led a five-member team delivering SharePoint architecture, deployment, monitoring, and support for eClinical products.</li>
+          </ul>
+        </div>
+        <div class="tl-item condensed">
+          <div class="tl-date mono">Apr 2004 — Dec 2014</div>
+          <div class="tl-role">Earlier career — Consultant, Senior System Analyst, Senior Software Engineer, Module Leader, Sr. Software Programmer</div>
+          <div class="tl-org">Mumbai, India &amp; Milwaukee, Wisconsin</div>
+          <ul>
+            <li>Progressed from ASP.NET development into SharePoint architecture and consulting, leading teams of up to 18 across on-premises SharePoint, Project Server, and TFS-based CI/CD delivery.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker mono">Education &amp; certifications</div>
+        <h2>Background</h2>
+      </div>
+      <div class="edu-grid">
+        <div>
+          <h3 class="sub-head">Education</h3>
+          <ul class="edu-list">
+            <li><div class="item-title">MCA</div><div class="item-sub">Madurai Kamaraj University · 2000–2003</div></li>
+            <li><div class="item-title">BSc Physics</div><div class="item-sub">Sri Kumara Gurupara Swamigal Arts College · 1997–2000</div></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub-head">Certifications</h3>
+          <ul class="cert-list">
+            <li><div class="item-title">Microsoft Certified: Azure Administrator Associate</div><div class="item-sub">Issued Jan 2023</div></li>
+            <li><div class="item-title">MCTS: SharePoint 2010 Application Development and Configuration</div><div class="item-sub">Issued 2013</div></li>
+            <li><div class="item-title">Microsoft Certified Professional</div><div class="item-sub">Issued Apr 2013</div></li>
+            <li><div class="item-title">Google Cybersecurity Professional Certificate</div><div class="item-sub">In progress</div></li>
+            <li><div class="item-title">AWS Certified Cloud Practitioner</div><div class="item-sub">In progress</div></li>
+            <li><div class="item-title">CISSP</div><div class="item-sub">In progress</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Let's talk</h2>
+        <p>Open to conversations about IT and cloud leadership roles, and about where security and compliance leadership fits next.</p>
+      </div>
+      <ul class="contact-links">
+        <li><span class="label mono">Email</span><a href="mailto:ravindran.mani@yahoo.com">ravindran.mani@yahoo.com</a></li>
+        <li><span class="label mono">LinkedIn</span><a href="https://linkedin.com/in/ravindranmani" target="_blank" rel="noopener">linkedin.com/in/ravindranmani</a></li>
+        <li><span class="label mono">Location</span><span>Miami, Florida</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; <span id="year"></span> Ravindran Mani. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var btn = document.getElementById('navBtn');
+  var links = document.getElementById('navlinks');
+  btn.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
