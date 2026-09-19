@@ -1,44 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <url>
-       <loc>https://ravindran.in/</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://ravindran.in/#about</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://ravindran.in/#expertise</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://ravindran.in/#technology</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://ravindran.in/#ai-automation</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://ravindran.in/#experience</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://ravindran.in/#education</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>  
-  <url>
-       <loc>https://ravindran.in/#contact</loc>
-       <lastmod>2026-09-17T14:24:09+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ravindran.in/</loc></url>
+  <url><loc>https://ravindran.in/about.html</loc></url>
+  <url><loc>https://ravindran.in/expertise.html</loc></url>
+  <url><loc>https://ravindran.in/technology.html</loc></url>
+  <url><loc>https://ravindran.in/ai-automation.html</loc></url>
+  <url><loc>https://ravindran.in/experience.html</loc></url>
+  <url><loc>https://ravindran.in/education.html</loc></url>
+  <url><loc>https://ravindran.in/contact.html</loc></url>
 </urlset>
