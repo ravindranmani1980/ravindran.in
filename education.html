@@ -219,14 +219,23 @@
   .tl-item.condensed .tl-role{ font-size:1.02rem; }
 
   /* education */
-  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
-  @media (max-width:760px){ .edu-grid{ grid-template-columns:1fr; } }
+  .edu-grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:44px; }
+  .edu-grid > div{ min-width:0; }
   .edu-list, .cert-list{ list-style:none; margin:0; padding:0; }
-  .edu-list li, .cert-list li{ padding:14px 0; border-bottom:1px solid #D9DDD3; }
-  .edu-list li:first-child, .cert-list li:first-child{ padding-top:0; }
-  .item-title{ font-weight:600; color:var(--navy); }
-  .item-sub{ color:var(--ink-soft); font-size:0.9rem; margin-top:2px; }
-  h3.sub-head{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--teal); font-weight:500; margin-bottom:14px; }
+  .edu-list{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; }
+  .edu-list li{ padding:18px 0; border-top:1px solid #C7CDC0; border-bottom:1px solid #D9DDD3; }
+  .cert-list{ border-top:1px solid #C7CDC0; }
+  .cert-list li{ display:grid; grid-template-columns:minmax(0,1fr) 290px; align-items:start; gap:12px 28px; padding:18px 0; border-bottom:1px solid #D9DDD3; }
+  .item-title{ font-weight:600; color:var(--navy); overflow-wrap:break-word; }
+  .item-sub{ color:var(--ink-soft); font-size:0.9rem; margin-top:4px; }
+  .cert-list .item-sub{ margin-top:0; }
+  h2.sub-head{ font-family:'IBM Plex Mono', monospace; font-size:1rem; color:var(--navy); font-weight:500; margin-bottom:14px; }
+  @media (max-width:760px){
+    .edu-list{ grid-template-columns:minmax(0,1fr); gap:0; }
+    .edu-list li + li{ border-top:0; }
+    .cert-list li{ grid-template-columns:minmax(0,1fr); gap:4px; padding:16px 0; }
+    .edu-grid{ gap:32px; }
+  }
 
   /* contact */
   .contact{ background:var(--navy-deep); color:var(--paper); }
@@ -266,14 +275,14 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
       </div>
       <div class="edu-grid">
         <div>
-          <h3 class="sub-head">Education</h3>
+          <h2 class="sub-head">Education</h2>
           <ul class="edu-list">
             <li><div class="item-title">MCA</div><div class="item-sub">Madurai Kamaraj University · 2000–2003</div></li>
             <li><div class="item-title">BSc Physics</div><div class="item-sub">Sri Kumara Gurupara Swamigal Arts College · 1997–2000</div></li>
           </ul>
         </div>
         <div>
-          <h3 class="sub-head">Certifications</h3>
+          <h2 class="sub-head">Certifications</h2>
           <ul class="cert-list">
             <li><div class="item-title">Microsoft Certified: Azure Administrator Associate</div><div class="item-sub">Issued Jan 2023</div></li>
             <li><div class="item-title">AWS Certified Cloud Practitioner</div><div class="item-sub">Issued Sep 2026</div></li>
