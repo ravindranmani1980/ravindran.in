@@ -1,135 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AWS Examples | Ravindran Mani</title>
-<meta name="description" content="Hands-on AWS code examples across 58 services: CloudFormation, S3, VPC, Lambda, ECS, Bedrock and more, with links to the source on GitHub.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<meta name="description" content="Hands-on AWS code examples across 58 services, including CloudFormation, S3, VPC, Lambda, ECS and Bedrock, with source on GitHub.">
+<meta name="keywords" content="AWS, AWS Examples, CloudFormation, Terraform, AWS CLI, S3, VPC, Lambda, ECS, Bedrock, Cloud Operations">
 <meta name="author" content="Ravindran Mani">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ravindran.in/aws-examples.html">
-<meta property="og:title" content="AWS Examples | Ravindran Mani">
-<meta property="og:description" content="Hands-on AWS code examples across 58 services, with links to the source on GitHub.">
+
 <meta property="og:type" content="website">
+<meta property="og:title" content="AWS Examples | Ravindran Mani">
+<meta property="og:description" content="Hands-on AWS code examples across 58 services, including CloudFormation, S3, VPC, Lambda, ECS and Bedrock, with source on GitHub.">
 <meta property="og:url" content="https://ravindran.in/aws-examples.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CollectionPage","name":"AWS Examples","url":"https://ravindran.in/aws-examples.html",
-"author":{"@type":"Person","name":"Ravindran Mani","url":"https://ravindran.in/"},
-"about":{"@type":"SoftwareSourceCode","name":"AWS_Examples","codeRepository":"https://github.com/ravindranmani1980/AWS_Examples"}}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #F3F5F7; --surface: #FFFFFF; --ink: #17212C; --muted: #566270; --rule: #D6DCE2; --link: #1D5AA6; --link-hover: #0F3F7A;
-  --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --cond: "IBM Plex Sans Condensed", "Arial Narrow", "IBM Plex Sans", system-ui, sans-serif;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #111820; --surface: #18212B; --ink: #E3E8ED; --muted: #9AA6B2; --rule: #2B3642; --link: #86B6F2; --link-hover: #B5D3F8; }
-}
-*, *::before, *::after { box-sizing: inherit; }
-html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.6 var(--sans); }
-a { color: var(--link); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
-a:hover { color: var(--link-hover); }
-a:focus-visible, input:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-.skip { position: absolute; left: -999px; } .skip:focus { left: 1rem; top: 1rem; background: var(--surface); padding: .5rem 1rem; }
-
-.site-header { border-bottom: 1px solid var(--rule); background: var(--surface); }
-.site-header .inner { max-width: 72rem; margin: 0 auto; padding: .9rem 1.25rem; display: flex; flex-wrap: wrap; gap: .5rem 2rem; align-items: baseline; }
-.brand { font: 600 1.1rem/1.2 var(--cond); color: var(--ink); text-decoration: none; }
-.site-header ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.1rem; font-size: .92rem; }
-.site-header a:not(.brand) { color: var(--muted); text-decoration: none; }
-.site-header a:hover, .site-header a[aria-current] { color: var(--ink); }
-.site-header a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .35em; }
-
-main { max-width: 72rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
-.intro { max-width: 44rem; }
-h1 { font: 600 clamp(2.4rem, 6vw, 4rem)/1 var(--cond); letter-spacing: -0.01em; margin: 0 0 1.1rem; }
-.intro p { color: var(--muted); margin: 0 0 1rem; font-size: 1.08rem; }
-.intro .repo { font-weight: 500; }
-
-.finder { margin: 2.25rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
-.finder label { font: 500 .95rem var(--sans); }
-.finder input { flex: 1 1 18rem; max-width: 28rem; font: 400 1rem var(--sans); color: var(--ink); background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 4px; padding: .6rem .8rem; }
-.finder output { color: var(--muted); font-size: .92rem; }
-
-.group { display: grid; grid-template-columns: 15rem 1fr; gap: 1.5rem; border-top: 1px solid var(--rule); padding: 1.6rem 0; }
-.group:first-of-type { margin-top: 2.5rem; }
-.group h2 { font: 600 1.2rem/1.3 var(--cond); margin: 0; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1rem); align-self: start; }
-.svcs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.4rem 2rem; }
-.svc-name { font: 500 1.05rem/1.35 var(--sans); }
-.subs { list-style: none; margin: .35rem 0 0; padding: 0 0 0 .8rem; border-left: 2px solid var(--rule); font-size: .9rem; line-height: 1.5; }
-.subs a { color: var(--muted); text-decoration: none; }
-.subs a:hover { color: var(--link-hover); text-decoration: underline; }
-.svc[hidden], .group[hidden] { display: none; }
-.empty { color: var(--muted); padding: 2rem 0; }
-
-footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
-footer .inner { max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.25rem; }
-footer p { margin: 0 0 .4rem; }
-
-@media (max-width: 720px) {
-  main { padding-top: 2rem; }
-  .group { grid-template-columns: 1fr; gap: .9rem; }
-  .group h2 { position: static; }
-}
-</style>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header"><div class="inner">
-  <a class="brand" href="https://ravindran.in/index.html">Ravindran Mani</a>
-  <nav aria-label="Main"><ul><li><a href="https://ravindran.in/index.html">Home</a></li><li><a href="https://ravindran.in/about.html">About</a></li><li><a href="https://ravindran.in/expertise.html">Expertise</a></li><li><a href="https://ravindran.in/technology.html">Technology</a></li><li><a href="https://ravindran.in/ai-automation.html">AI &amp; Automation</a></li><li><a href="https://ravindran.in/aws-examples.html" aria-current="page">AWS Examples</a></li><li><a href="https://ravindran.in/experience.html">Experience</a></li><li><a href="https://ravindran.in/education.html">Education</a></li><li><a href="https://ravindran.in/contact.html">Contact</a></li></ul></nav>
-</div></header>
-
-<main id="main">
-  <div class="intro">
-    <h1>AWS examples</h1>
-    <p>Working code for 58 AWS services: CloudFormation templates, CLI scripts, Terraform, SDK samples and container apps. Each link opens the example's source on GitHub.</p>
-    <p><a class="repo" href="https://github.com/ravindranmani1980/AWS_Examples">View the full repository on GitHub</a></p>
-  </div>
-
-  <div class="finder" role="search">
-    <label for="q">Find a service or example</label>
-    <input id="q" type="search" placeholder="Try: lambda, vpc peering, bedrock" autocomplete="off">
-    <output id="count" for="q" aria-live="polite"></output>
-  </div>
-
-  <section class="group"><h2>Compute</h2><ul class="svcs"><li class="svc" data-search="app runner apprunner"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/apprunner">App Runner</a></li><li class="svc" data-search="auto scaling with cloudformation aws-asg"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/aws-asg">Auto Scaling with CloudFormation</a></li><li class="svc" data-search="aws batch batch app app"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/batch">AWS Batch</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/batch/app">App</a></li></ul></li><li class="svc" data-search="ec2 ec2 user data userdata"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ec2">EC2</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ec2/userdata">User data</a></li></ul></li><li class="svc" data-search="ec2 auto scaling asg basic basic"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/asg">EC2 Auto Scaling</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/asg/basic">Basic</a></li></ul></li><li class="svc" data-search="elastic beanstalk eb advanced basic advanced basic"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eb">Elastic Beanstalk</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eb/advanced">Advanced</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eb/basic">Basic</a></li></ul></li><li class="svc" data-search="lambda lambda container inline layers rust zip (local) zip (package) container inline layers rust zip_local zip_package"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda">Lambda</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/container">Container</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/inline">Inline</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/layers">Layers</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/rust">Rust</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/zip_local">Zip (local)</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/zip_package">Zip (package)</a></li></ul></li></ul></section><section class="group"><h2>Containers</h2><ul class="svcs"><li class="svc" data-search="copilot cli copilot-cli"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/copilot-cli">Copilot CLI</a></li><li class="svc" data-search="ecr ecr app app"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecr">ECR</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecr/app">App</a></li></ul></li><li class="svc" data-search="ecs ecs ec2 launch type fargate service connect ec2 fargate service-connect"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs">ECS</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs/ec2">EC2 launch type</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs/fargate">Fargate</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs/service-connect">Service connect</a></li></ul></li><li class="svc" data-search="eks eks"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eks">EKS</a></li></ul></section><section class="group"><h2>Storage</h2><ul class="svcs"><li class="svc" data-search="datasync datasync"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/datasync">DataSync</a></li><li class="svc" data-search="ebs ebs basic encrypt multi-attach resize basic encrypt multi-atttach resize"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs">EBS</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/basic">Basic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/encrypt">Encrypt</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/multi-atttach">Multi-attach</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/resize">Resize</a></li></ul></li><li class="svc" data-search="efs efs basic basic"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/efs">EFS</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/efs/basic">Basic</a></li></ul></li><li class="svc" data-search="fsx fsx openzfs openzfs"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/fsx">FSx</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/fsx/openzfs">OpenZFS</a></li></ul></li><li class="svc" data-search="s3 s3 acls bash scripts batch operations bucket policy byte range change storage class checksums cors dual endpoints encryption encryption client etags event notifications glacier infrastructure as code lifecycle metadata multipart upload object locks object tags powershell scripts prefixes replication s3 select versioning sdk server logs static website hosting acls bash-scripts batch-operations bucket-policy byte-range change-storage-class checksums cors dual-endpoints encryption encryption-client etags event-notifications glacier iac lifecycle metadata multipart-upload object-locks object-tags powershell-scripts prefixes replication s3-select s3-versioning sdk server-logs static-website-hosting"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3">S3</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/acls">ACLs</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/bash-scripts">Bash scripts</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/batch-operations">Batch operations</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/bucket-policy">Bucket policy</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/byte-range">Byte range</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/change-storage-class">Change storage class</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/checksums">Checksums</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/cors">CORS</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/dual-endpoints">Dual endpoints</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/encryption">Encryption</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/encryption-client">Encryption client</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/etags">ETags</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/event-notifications">Event notifications</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/glacier">Glacier</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/iac">Infrastructure as code</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/lifecycle">Lifecycle</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/metadata">Metadata</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/multipart-upload">Multipart upload</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/object-locks">Object locks</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/object-tags">Object tags</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/powershell-scripts">Powershell scripts</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/prefixes">Prefixes</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/replication">Replication</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/s3-select">S3 Select</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/s3-versioning">Versioning</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/sdk">SDK</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/server-logs">Server logs</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/static-website-hosting">Static website hosting</a></li></ul></li></ul></section><section class="group"><h2>Databases</h2><ul class="svcs"><li class="svc" data-search="aurora aurora basic cluster basic-cluster"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/aurora">Aurora</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/aurora/basic-cluster">Basic cluster</a></li></ul></li><li class="svc" data-search="database migration service dms serverless serverless"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dms">Database Migration Service</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dms/serverless">Serverless</a></li></ul></li><li class="svc" data-search="documentdb documentdb"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/documentdb">DocumentDB</a></li><li class="svc" data-search="dynamodb dynamodb basic simple basic simple"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dynamodb">DynamoDB</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dynamodb/basic">Basic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dynamodb/simple">Simple</a></li></ul></li><li class="svc" data-search="elasticache elasticache serverless serverless"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elasticache">ElastiCache</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elasticache/serverless">Serverless</a></li></ul></li><li class="svc" data-search="memorydb memorydb"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/memorydb">MemoryDB</a></li><li class="svc" data-search="rds rds basic pgvector basic pgvector"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rds">RDS</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rds/basic">Basic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rds/pgvector">pgvector</a></li></ul></li></ul></section><section class="group"><h2>Networking &amp; content delivery</h2><ul class="svcs"><li class="svc" data-search="api gateway api-gateway http api rest api http rest"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api-gateway">API Gateway</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api-gateway/http">HTTP API</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api-gateway/rest">REST API</a></li></ul></li><li class="svc" data-search="certificate manager (acm) acm application load balancer alb"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/acm">Certificate Manager (ACM)</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/acm/alb">Application Load Balancer</a></li></ul></li><li class="svc" data-search="elastic load balancing elb application load balancer alb"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elb">Elastic Load Balancing</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elb/alb">Application Load Balancer</a></li></ul></li><li class="svc" data-search="global accelerator global-accelerator"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/global-accelerator">Global Accelerator</a></li><li class="svc" data-search="route 53 route53 alias basic alias basic"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/route53">Route 53</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/route53/alias">Alias</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/route53/basic">Basic</a></li></ul></li><li class="svc" data-search="vpc vpc basics egress-only internet gateway gateway endpoint interface endpoint network acls nat gateway peering connection security groups basics eigw gateway-endpoint inteface-endpoint nacl nat-gateway peering-connection sg"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc">VPC</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/basics">Basics</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/eigw">Egress-only internet gateway</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/gateway-endpoint">Gateway endpoint</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/inteface-endpoint">Interface endpoint</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/nacl">Network ACLs</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/nat-gateway">Nat gateway</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/peering-connection">Peering connection</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/sg">Security groups</a></li></ul></li></ul></section><section class="group"><h2>Security &amp; identity</h2><ul class="svcs"><li class="svc" data-search="iam iam policy type of policies policy type-of-policies"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/iam">IAM</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/iam/policy">Policy</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/iam/type-of-policies">Type of policies</a></li></ul></li><li class="svc" data-search="secrets manager secrets-manager basic database credentials mask basic db mask"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager">Secrets Manager</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager/basic">Basic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager/db">Database credentials</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager/mask">Mask</a></li></ul></li></ul></section><section class="group"><h2>Application integration</h2><ul class="svcs"><li class="svc" data-search="amazon mq mq amqp mqtt stomp amqp mqtt stomp"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq">Amazon MQ</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq/amqp">AMQP</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq/mqtt">MQTT</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq/stomp">STOMP</a></li></ul></li><li class="svc" data-search="appflow appflow"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/appflow">AppFlow</a></li><li class="svc" data-search="managed streaming for kafka (msk) kafka app log app log"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kafka">Managed Streaming for Kafka (MSK)</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kafka/app">App</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kafka/log">Log</a></li></ul></li><li class="svc" data-search="sns sns basic basic"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sns">SNS</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sns/basic">Basic</a></li></ul></li><li class="svc" data-search="sqs sqs fifo queues standard queues fifo standard"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sqs">SQS</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sqs/fifo">FIFO queues</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sqs/standard">Standard queues</a></li></ul></li><li class="svc" data-search="step functions step-functions hello star trek hello star-trek"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/step-functions">Step Functions</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/step-functions/hello">Hello</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/step-functions/star-trek">Star Trek</a></li></ul></li></ul></section><section class="group"><h2>Analytics</h2><ul class="svcs"><li class="svc" data-search="glue glue data catalog data-catalog"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/glue">Glue</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/glue/data-catalog">Data catalog</a></li></ul></li><li class="svc" data-search="kinesis kinesis datastreams firehose datastreams firehose"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kinesis">Kinesis</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kinesis/datastreams">Datastreams</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kinesis/firehose">Firehose</a></li></ul></li><li class="svc" data-search="opensearch opensearch opensearch opensearch"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/opensearch">OpenSearch</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/opensearch/opensearch">Opensearch</a></li></ul></li></ul></section><section class="group"><h2>Machine learning &amp; AI</h2><ul class="svcs"><li class="svc" data-search="bedrock bedrock agent fine tuning prompt engineering rag text generation agent fine-tuning prompt-engineering rag text-generation"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock">Bedrock</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/agent">Agent</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/fine-tuning">Fine tuning</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/prompt-engineering">Prompt engineering</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/rag">RAG</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/text-generation">Text generation</a></li></ul></li><li class="svc" data-search="kendra kendra split split"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kendra">Kendra</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kendra/split">Split</a></li></ul></li><li class="svc" data-search="personalize personalize"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/personalize">Personalize</a></li><li class="svc" data-search="polly polly"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/polly">Polly</a></li><li class="svc" data-search="rekognition rekognition"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rekognition">Rekognition</a></li><li class="svc" data-search="sagemaker sage-maker nlp metrics nlp-metrics"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sage-maker">SageMaker</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sage-maker/nlp-metrics">NLP metrics</a></li></ul></li><li class="svc" data-search="textract textract"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/textract">Textract</a></li><li class="svc" data-search="translate translate"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/translate">Translate</a></li></ul></section><section class="group"><h2>Management &amp; infrastructure as code</h2><ul class="svcs"><li class="svc" data-search="appconfig appconfig feature flags feature-flags"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/appconfig">AppConfig</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/appconfig/feature-flags">Feature flags</a></li></ul></li><li class="svc" data-search="aws cli &amp; api techniques api aliases base64 chaining docker filters jp (jmespath) jq localstack query skeleton sts wait yq aliases base64 chaining docker filters jp jq localstack query skeleton sts wait yq"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api">AWS CLI &amp; API techniques</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/aliases">Aliases</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/base64">Base64</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/chaining">Chaining</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/docker">Docker</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/filters">Filters</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/jp">jp (JMESPath)</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/jq">jq</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/localstack">LocalStack</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/query">Query</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/skeleton">Skeleton</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/sts">STS</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/wait">Wait</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/yq">yq</a></li></ul></li><li class="svc" data-search="cloudformation cfn basic cfn-hup cfn-init creation policy cross reference stacks custom resource depends drift detection import intrinsic nested stacks prevent stack update pseudo quickstarts skip delete resource stack updates wait conditions basic cfn-hup cfn-init creation-policy cross-reference-stacks custom-resource depends drift-detection import intrinsic nested-stacks prevent-stack-update pseudo quickstarts skip-delete-resource stack-updates wait-conditions"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn">CloudFormation</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/basic">Basic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/cfn-hup">cfn-hup</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/cfn-init">cfn-init</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/creation-policy">Creation policy</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/cross-reference-stacks">Cross reference stacks</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/custom-resource">Custom resource</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/depends">Depends</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/drift-detection">Drift detection</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/import">Import</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/intrinsic">Intrinsic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/nested-stacks">Nested stacks</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/prevent-stack-update">Prevent stack update</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/pseudo">Pseudo</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/quickstarts">Quickstarts</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/skip-delete-resource">Skip delete resource</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/stack-updates">Stack updates</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/wait-conditions">Wait conditions</a></li></ul></li><li class="svc" data-search="cloudtrail cloudtrail basic cloudwatch basic cloudwatch"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudtrail">CloudTrail</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudtrail/basic">Basic</a></li><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudtrail/cloudwatch">Cloudwatch</a></li></ul></li><li class="svc" data-search="cloudwatch cloudwatch logs logs"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudwatch">CloudWatch</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudwatch/logs">Logs</a></li></ul></li></ul></section><section class="group"><h2>Developer tools</h2><ul class="svcs"><li class="svc" data-search="cloud9 cloud9"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloud9">Cloud9</a></li><li class="svc" data-search="codepipeline codepipeline pipeline v1 v1"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/codepipeline">CodePipeline</a><ul class="subs"><li><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/codepipeline/v1">Pipeline v1</a></li></ul></li><li class="svc" data-search="codewhisperer codewhisper"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/codewhisper">CodeWhisperer</a></li><li class="svc" data-search="device farm device-farm"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/device-farm">Device Farm</a></li></ul></section><section class="group"><h2>Media</h2><ul class="svcs"><li class="svc" data-search="elastic transcoder elastic-transcoder"><a class="svc-name" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elastic-transcoder">Elastic Transcoder</a></li></ul></section>
-  <p class="empty" id="empty" hidden>No examples match that search. Try a service name like "S3" or a feature like "encryption".</p>
-</main>
-
-<footer><div class="inner">
-  <p>Examples adapted from ExamPro's AWS-Examples repository, used in their AWS certification courses.</p>
-  <p>&copy; 2026 Ravindran Mani. All rights reserved.</p>
-</div></footer>
-
-<script>
-(function () {
-  var input = document.getElementById('q'), count = document.getElementById('count'), empty = document.getElementById('empty');
-  var groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
-  function run() {
-    var terms = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean), shown = 0;
-    groups.forEach(function (g) {
-      var any = false;
-      g.querySelectorAll('.svc').forEach(function (s) {
-        var hay = s.getAttribute('data-search');
-        var ok = terms.every(function (t) { return hay.indexOf(t) !== -1; });
-        s.hidden = !ok; if (ok) { any = true; shown++; }
-      });
-      g.hidden = !any;
-    });
-    count.textContent = terms.length ? shown + (shown === 1 ? ' service' : ' services') : '';
-    empty.hidden = shown !== 0;
+  :root{
+    --navy-deep:#081420;
+    --navy:#0E2238;
+    --line:#3E6E86;
+    --line-soft:rgba(62,110,134,0.35);
+    --paper:#F3F5F1;
+    --paper-raised:#E9ECE6;
+    --ink:#16232F;
+    --ink-soft:#4B5A66;
+    --accent:#D79A45;
+    --accent-soft:#EBC385;
+    --teal:#5E9C97;
+    --max:1080px;
   }
-  input.addEventListener('input', run);
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    margin:0;
+    color:var(--navy);
+    font-weight:600;
+  }
+  a{color:inherit;}
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+  /* skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:0;
+    background:var(--accent); color:var(--navy-deep);
+    padding:10px 16px; z-index:200;
+  }
+  .skip-link:focus{ left:16px; top:16px; }
+
+  /* NAV */
+  header.site{
+    position:sticky; top:0; z-index:100;
+    background:rgba(8,20,32,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:'Source Serif 4', serif;
+    color:var(--paper);
+    font-size:1.05rem;
+    font-weight:600;
+    text-decoration:none;
+    letter-spacing:0.01em;
+  }
+  .brand span{ color:var(--accent); }
+  .navlinks{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+  .navlinks a{
+    color:#C9D3D9; text-decoration:none; font-size:0.92rem;
+    padding:6px 2px; border-bottom:1px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible{ color:var(--paper); border-color:var(--accent); }
+  .navtoggle{ display:none; background:none; border:1px solid var(--line-soft); color:var(--paper); padding:8px 12px; border-radius:4px; }
+
+  @media (max-width:760px){
+    .navlinks{
+      position:absolute; top:64px; left:0; right:0;
+      background:var(--navy-deep); flex-direction:column; gap:0;
+      max-height:0; overflow:hidden; border-bottom:1px solid var(--line-soft);
+    }
+    .navlinks.open{ max-height:400px; }
+    .navlinks a{ display:block; padding:14px 32px; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .navtoggle{ display:block; }
+  }
+
+  /* HERO */
+  .hero{
+    background:
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 72px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, var(--line-soft) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 64px);
+    opacity:0.35;
+    mask-image:radial-gradient(ellipse at 30% 30%, black 0%, transparent 75%);
+  }
+  .hero .wrap{ position:relative; display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center; }
+  @media (max-width:860px){ .hero .wrap{ grid-template-columns:1fr; } }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem; color:var(--accent-soft);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    color:var(--paper); font-size:clamp(2.1rem, 4.2vw, 3.1rem);
+    line-height:1.12; margin-bottom:18px;
+  }
+  .hero p.lede{
+    color:#C9D3D9; font-size:1.08rem; max-width:46ch; margin-bottom:28px;
+  }
+  .hero-links{ display:flex; flex-wrap:wrap; gap:14px 22px; font-size:0.94rem; }
+  .hero-links a{ text-decoration:none; color:var(--accent-soft); border-bottom:1px solid rgba(215,154,69,0.4); padding-bottom:2px; }
+  .hero-links a:hover{ color:var(--accent); border-color:var(--accent); }
+  .hero-links span.loc{ color:#8FA0AB; }
+
+  /* migration diagram */
+  .diagram{
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--line-soft);
+    border-radius:6px;
+    padding:24px 24px 18px;
+  }
+  .diagram-title{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:#8FA0AB; margin-bottom:16px; }
+  .bars{ display:flex; align-items:flex-end; gap:36px; height:150px; }
+  .bar-col{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+  .bar{ width:56px; background:linear-gradient(180deg, var(--teal), #3d6f6b); border-radius:3px 3px 0 0; position:relative; }
+  .bar.before{ height:100%; background:linear-gradient(180deg,#6b7d87,#4a5964); }
+  .bar.after{ height:56%; background:linear-gradient(180deg, var(--accent), #b87b2e); }
+  .bar-value{ font-family:'IBM Plex Mono', monospace; font-size:0.95rem; color:var(--paper); margin-bottom:8px; }
+  .bar-label{ font-size:0.78rem; color:#8FA0AB; margin-top:10px; }
+  .diagram-foot{ margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft); font-size:0.85rem; color:#C9D3D9; }
+  .diagram-foot strong{ color:var(--accent-soft); }
+
+  /* SECTIONS */
+  section{ padding:76px 0; }
+  section.alt{ background:var(--paper-raised); }
+  .section-head{ margin-bottom:36px; max-width:60ch; }
+  .section-head .kicker{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--teal); margin-bottom:8px; }
+  .section-head h2{ font-size:1.9rem; }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; }
+
+  /* about */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ margin:0 0 16px; color:var(--ink-soft); }
+  .stat-list{ list-style:none; margin:0; padding:0; border-top:1px solid #D9DDD3; }
+  .stat-list li{ display:flex; justify-content:space-between; gap:16px; padding:16px 0; border-bottom:1px solid #D9DDD3; }
+  .stat-list .num{ font-family:'IBM Plex Mono', monospace; color:var(--navy); font-weight:500; white-space:nowrap; }
+  .stat-list .desc{ color:var(--ink-soft); font-size:0.95rem; }
+
+  /* expertise cards */
+  .cards{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:#D9DDD3; border:1px solid #D9DDD3; }
+  @media (max-width:760px){ .cards{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .cards{ grid-template-columns:1fr; } }
+  .card{ background:var(--paper); padding:28px 26px; }
+  .card h3{ font-size:1.05rem; margin-bottom:10px; }
+  .card p{ color:var(--ink-soft); font-size:0.92rem; margin:0; }
+  .card .idx{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--teal); display:block; margin-bottom:12px; }
+
+  /* technology tags */
+  .tech-groups{ display:grid; grid-template-columns:repeat(2, 1fr); gap:32px 48px; }
+  @media (max-width:700px){ .tech-groups{ grid-template-columns:1fr; } }
+  .tech-group h3{ font-size:0.95rem; font-family:'IBM Plex Mono', monospace; color:var(--navy); font-weight:500; margin-bottom:14px; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
+    padding:6px 12px; border:1px solid #C7CDC0; border-radius:3px; color:var(--ink);
+    background:var(--paper);
+  }
+
+  /* timeline */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:#C7CDC0; }
+  .tl-item{ position:relative; padding-bottom:40px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-28px; top:6px; width:11px; height:11px;
+    border-radius:50%; background:var(--paper); border:2px solid var(--teal);
+  }
+  .tl-item.current::before{ background:var(--accent); border-color:var(--accent); }
+  .tl-date{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--teal); margin-bottom:6px; }
+  .tl-role{ font-size:1.15rem; margin-bottom:2px; }
+  .tl-org{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:12px; }
+  .tl-org a{ color:var(--navy); text-decoration:none; border-bottom:1px solid #C7CDC0; }
+  .tl-item ul{ margin:0; padding-left:20px; color:var(--ink-soft); font-size:0.95rem; }
+  .tl-item li{ margin-bottom:6px; }
+  .tl-item.condensed .tl-role{ font-size:1.02rem; }
+
+  /* education */
+  .edu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media (max-width:760px){ .edu-grid{ grid-template-columns:1fr; } }
+  .edu-list, .cert-list{ list-style:none; margin:0; padding:0; }
+  .edu-list li, .cert-list li{ padding:14px 0; border-bottom:1px solid #D9DDD3; }
+  .edu-list li:first-child, .cert-list li:first-child{ padding-top:0; }
+  .item-title{ font-weight:600; color:var(--navy); }
+  .item-sub{ color:var(--ink-soft); font-size:0.9rem; margin-top:2px; }
+  h3.sub-head{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--teal); font-weight:500; margin-bottom:14px; }
+
+  /* contact */
+  .contact{ background:var(--navy-deep); color:var(--paper); }
+  .contact .wrap{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:center; }
+  @media (max-width:760px){ .contact .wrap{ grid-template-columns:1fr; } }
+  .contact h2{ color:var(--paper); font-size:2rem; margin-bottom:14px; }
+  .contact p{ color:#B9C4CC; max-width:48ch; }
+  .contact-links{ list-style:none; margin:0; padding:0; }
+  .contact-links li{ border-top:1px solid var(--line-soft); padding:16px 0; }
+  .contact-links li:last-child{ border-bottom:1px solid var(--line-soft); }
+  .contact-links a{ text-decoration:none; color:var(--paper); font-size:1.05rem; }
+  .contact-links a:hover{ color:var(--accent-soft); }
+  .contact-links .label{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--teal); margin-bottom:4px; }
+
+  footer{ padding:28px 0; text-align:center; color:var(--ink-soft); font-size:0.85rem; background:var(--paper); }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+/* Preserve section styling when its heading becomes the page H1. */
+.section-head h1{font-size:1.9rem}.contact h1{color:var(--paper);font-size:2rem;margin-bottom:14px}
+body{min-height:100vh;display:flex;flex-direction:column}main{flex:1}.navlinks{gap:18px}.navlinks a{white-space:nowrap}.navlinks a[aria-current="page"]{color:var(--accent-soft);border-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(max-width:1100px){nav.wrap{height:auto;min-height:64px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px;gap:10px}.navlinks{width:100%;justify-content:space-between;gap:8px}}
+@media(max-width:760px){nav.wrap{height:64px;padding-top:0;padding-bottom:0}.navlinks{width:auto;gap:0;visibility:hidden}.navlinks.open{visibility:visible;max-height:calc(100dvh - 64px);overflow-y:auto}.navlinks a{padding:10px 24px}}
+@media(max-width:420px){.wrap{padding-left:20px;padding-right:20px}.hero{padding-top:48px;padding-bottom:48px}}
+
+/* AWS examples page */
+.finder{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:28px}
+.finder label{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--teal)}
+.finder input{flex:1 1 280px;max-width:420px;font:inherit;font-size:0.95rem;color:var(--ink);background:var(--paper);border:1px solid #C7CDC0;border-radius:3px;padding:10px 14px}
+.finder input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.finder output{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--ink-soft)}
+.repo-link{display:inline-block;margin-top:16px;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;font-weight:500}
+.repo-link:hover{color:var(--ink)}
+.svc-group{scroll-margin-top:80px}
+.svc-group + .svc-group{margin-top:56px}
+.svc-group h2{font-size:1.35rem;margin-bottom:18px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);padding:1px 0 0 1px}
+@media (max-width:760px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.svc-grid{grid-template-columns:1fr}}
+.svc-grid .card{border:1px solid #D9DDD3;margin:-1px 0 0 -1px}
+.card h3 a{text-decoration:none;border-bottom:1px solid transparent}
+.card h3 a:hover{border-color:var(--accent)}
+.card .tags{margin-top:4px}
+a.tag{text-decoration:none;transition:border-color .15s ease,color .15s ease}
+a.tag:hover{border-color:var(--teal);color:var(--navy)}
+.card .whole{font-size:0.9rem;color:var(--ink-soft);margin:0}
+.svc-group[hidden],.card[hidden]{display:none}
+.no-results{color:var(--ink-soft)}
+footer .credit{display:block;margin-bottom:6px}
+</style>
+
+<noscript><style>@media(max-width:760px){nav.wrap{height:auto;padding-top:12px;padding-bottom:12px}.navtoggle{display:none}.navlinks{position:static;max-height:none;visibility:visible;width:100%}}</style></noscript>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site"><nav class="wrap" aria-label="Main navigation"><a class="brand" href="index.html">Ravindran <span>Mani</span></a><button type="button" class="navtoggle" aria-expanded="false" aria-controls="navlinks" id="navBtn">Menu</button><ul class="navlinks" id="navlinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="expertise.html">Expertise</a></li><li><a href="technology.html">Technology</a></li><li><a href="ai-automation.html">AI &amp; Automation</a></li><li><a href="aws-examples.html" aria-current="page">AWS Examples</a></li><li><a href="experience.html">Experience</a></li><li><a href="education.html">Education</a></li><li><a href="contact.html">Contact</a></li></ul></nav></header>
+<main id="main">
+  <section aria-labelledby="aws-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker mono">AWS · Hands-on code</div>
+        <h1 id="aws-heading">AWS examples</h1>
+        <p>Working examples for 58 AWS services: CloudFormation templates, CLI scripts, Terraform, SDK samples and container apps. Each link opens the example's source on GitHub.</p>
+        <a class="repo-link" href="https://github.com/ravindranmani1980/AWS_Examples" target="_blank" rel="noopener">View the full repository on GitHub</a>
+      </div>
+      <div class="finder" role="search">
+        <label for="q">Find a service or example</label>
+        <input id="q" type="search" placeholder="Try: lambda, vpc peering, bedrock" autocomplete="off">
+        <output id="count" for="q" aria-live="polite"></output>
+      </div>
+    </div>
+  </section>
+  <section class="alt">
+    <div class="wrap">
+      <div class="svc-group" id="compute"><h2>Compute</h2><div class="svc-grid"><article class="card" data-search="app runner apprunner"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/apprunner">App Runner</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="auto scaling with cloudformation aws-asg"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/aws-asg">Auto Scaling with CloudFormation</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="aws batch batch app app"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/batch">AWS Batch</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/batch/app">App</a></div></article><article class="card" data-search="ec2 ec2 user data userdata"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ec2">EC2</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ec2/userdata">User data</a></div></article><article class="card" data-search="ec2 auto scaling asg basic basic"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/asg">EC2 Auto Scaling</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/asg/basic">Basic</a></div></article><article class="card" data-search="elastic beanstalk eb advanced basic advanced basic"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eb">Elastic Beanstalk</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eb/advanced">Advanced</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eb/basic">Basic</a></div></article><article class="card" data-search="lambda lambda container inline layers rust zip (local) zip (package) container inline layers rust zip_local zip_package"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda">Lambda</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/container">Container</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/inline">Inline</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/layers">Layers</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/rust">Rust</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/zip_local">Zip (local)</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/lambda/zip_package">Zip (package)</a></div></article></div></div><div class="svc-group" id="containers"><h2>Containers</h2><div class="svc-grid"><article class="card" data-search="copilot cli copilot-cli"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/copilot-cli">Copilot CLI</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="ecr ecr app app"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecr">ECR</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecr/app">App</a></div></article><article class="card" data-search="ecs ecs ec2 launch type fargate service connect ec2 fargate service-connect"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs">ECS</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs/ec2">EC2 launch type</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs/fargate">Fargate</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ecs/service-connect">Service connect</a></div></article><article class="card" data-search="eks eks"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/eks">EKS</a></h3><p class="whole">A single example covering the service.</p></article></div></div><div class="svc-group" id="storage"><h2>Storage</h2><div class="svc-grid"><article class="card" data-search="datasync datasync"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/datasync">DataSync</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="ebs ebs basic encrypt multi-attach resize basic encrypt multi-atttach resize"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs">EBS</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/basic">Basic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/encrypt">Encrypt</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/multi-atttach">Multi-attach</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/ebs/resize">Resize</a></div></article><article class="card" data-search="efs efs basic basic"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/efs">EFS</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/efs/basic">Basic</a></div></article><article class="card" data-search="fsx fsx openzfs openzfs"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/fsx">FSx</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/fsx/openzfs">OpenZFS</a></div></article><article class="card" data-search="s3 s3 acls bash scripts batch operations bucket policy byte range change storage class checksums cors dual endpoints encryption encryption client etags event notifications glacier infrastructure as code lifecycle metadata multipart upload object locks object tags powershell scripts prefixes replication s3 select versioning sdk server logs static website hosting acls bash-scripts batch-operations bucket-policy byte-range change-storage-class checksums cors dual-endpoints encryption encryption-client etags event-notifications glacier iac lifecycle metadata multipart-upload object-locks object-tags powershell-scripts prefixes replication s3-select s3-versioning sdk server-logs static-website-hosting"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3">S3</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/acls">ACLs</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/bash-scripts">Bash scripts</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/batch-operations">Batch operations</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/bucket-policy">Bucket policy</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/byte-range">Byte range</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/change-storage-class">Change storage class</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/checksums">Checksums</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/cors">CORS</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/dual-endpoints">Dual endpoints</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/encryption">Encryption</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/encryption-client">Encryption client</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/etags">ETags</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/event-notifications">Event notifications</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/glacier">Glacier</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/iac">Infrastructure as code</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/lifecycle">Lifecycle</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/metadata">Metadata</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/multipart-upload">Multipart upload</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/object-locks">Object locks</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/object-tags">Object tags</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/powershell-scripts">Powershell scripts</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/prefixes">Prefixes</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/replication">Replication</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/s3-select">S3 Select</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/s3-versioning">Versioning</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/sdk">SDK</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/server-logs">Server logs</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/s3/static-website-hosting">Static website hosting</a></div></article></div></div><div class="svc-group" id="databases"><h2>Databases</h2><div class="svc-grid"><article class="card" data-search="aurora aurora basic cluster basic-cluster"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/aurora">Aurora</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/aurora/basic-cluster">Basic cluster</a></div></article><article class="card" data-search="database migration service dms serverless serverless"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dms">Database Migration Service</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dms/serverless">Serverless</a></div></article><article class="card" data-search="documentdb documentdb"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/documentdb">DocumentDB</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="dynamodb dynamodb basic simple basic simple"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dynamodb">DynamoDB</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dynamodb/basic">Basic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/dynamodb/simple">Simple</a></div></article><article class="card" data-search="elasticache elasticache serverless serverless"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elasticache">ElastiCache</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elasticache/serverless">Serverless</a></div></article><article class="card" data-search="memorydb memorydb"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/memorydb">MemoryDB</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="rds rds basic pgvector basic pgvector"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rds">RDS</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rds/basic">Basic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rds/pgvector">pgvector</a></div></article></div></div><div class="svc-group" id="networking-content-delivery"><h2>Networking &amp; content delivery</h2><div class="svc-grid"><article class="card" data-search="api gateway api-gateway http api rest api http rest"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api-gateway">API Gateway</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api-gateway/http">HTTP API</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api-gateway/rest">REST API</a></div></article><article class="card" data-search="certificate manager (acm) acm application load balancer alb"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/acm">Certificate Manager (ACM)</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/acm/alb">Application Load Balancer</a></div></article><article class="card" data-search="elastic load balancing elb application load balancer alb"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elb">Elastic Load Balancing</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elb/alb">Application Load Balancer</a></div></article><article class="card" data-search="global accelerator global-accelerator"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/global-accelerator">Global Accelerator</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="route 53 route53 alias basic alias basic"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/route53">Route 53</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/route53/alias">Alias</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/route53/basic">Basic</a></div></article><article class="card" data-search="vpc vpc basics egress-only internet gateway gateway endpoint interface endpoint network acls nat gateway peering connection security groups basics eigw gateway-endpoint inteface-endpoint nacl nat-gateway peering-connection sg"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc">VPC</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/basics">Basics</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/eigw">Egress-only internet gateway</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/gateway-endpoint">Gateway endpoint</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/inteface-endpoint">Interface endpoint</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/nacl">Network ACLs</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/nat-gateway">Nat gateway</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/peering-connection">Peering connection</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/vpc/sg">Security groups</a></div></article></div></div><div class="svc-group" id="security-identity"><h2>Security &amp; identity</h2><div class="svc-grid"><article class="card" data-search="iam iam policy type of policies policy type-of-policies"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/iam">IAM</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/iam/policy">Policy</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/iam/type-of-policies">Type of policies</a></div></article><article class="card" data-search="secrets manager secrets-manager basic database credentials mask basic db mask"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager">Secrets Manager</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager/basic">Basic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager/db">Database credentials</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/secrets-manager/mask">Mask</a></div></article></div></div><div class="svc-group" id="application-integration"><h2>Application integration</h2><div class="svc-grid"><article class="card" data-search="amazon mq mq amqp mqtt stomp amqp mqtt stomp"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq">Amazon MQ</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq/amqp">AMQP</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq/mqtt">MQTT</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/mq/stomp">STOMP</a></div></article><article class="card" data-search="appflow appflow"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/appflow">AppFlow</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="managed streaming for kafka (msk) kafka app log app log"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kafka">Managed Streaming for Kafka (MSK)</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kafka/app">App</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kafka/log">Log</a></div></article><article class="card" data-search="sns sns basic basic"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sns">SNS</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sns/basic">Basic</a></div></article><article class="card" data-search="sqs sqs fifo queues standard queues fifo standard"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sqs">SQS</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sqs/fifo">FIFO queues</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sqs/standard">Standard queues</a></div></article><article class="card" data-search="step functions step-functions hello star trek hello star-trek"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/step-functions">Step Functions</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/step-functions/hello">Hello</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/step-functions/star-trek">Star Trek</a></div></article></div></div><div class="svc-group" id="analytics"><h2>Analytics</h2><div class="svc-grid"><article class="card" data-search="glue glue data catalog data-catalog"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/glue">Glue</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/glue/data-catalog">Data catalog</a></div></article><article class="card" data-search="kinesis kinesis datastreams firehose datastreams firehose"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kinesis">Kinesis</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kinesis/datastreams">Datastreams</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kinesis/firehose">Firehose</a></div></article><article class="card" data-search="opensearch opensearch opensearch opensearch"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/opensearch">OpenSearch</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/opensearch/opensearch">Opensearch</a></div></article></div></div><div class="svc-group" id="machine-learning-ai"><h2>Machine learning &amp; AI</h2><div class="svc-grid"><article class="card" data-search="bedrock bedrock agent fine tuning prompt engineering rag text generation agent fine-tuning prompt-engineering rag text-generation"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock">Bedrock</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/agent">Agent</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/fine-tuning">Fine tuning</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/prompt-engineering">Prompt engineering</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/rag">RAG</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/bedrock/text-generation">Text generation</a></div></article><article class="card" data-search="kendra kendra split split"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kendra">Kendra</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/kendra/split">Split</a></div></article><article class="card" data-search="personalize personalize"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/personalize">Personalize</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="polly polly"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/polly">Polly</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="rekognition rekognition"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/rekognition">Rekognition</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="sagemaker sage-maker nlp metrics nlp-metrics"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sage-maker">SageMaker</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/sage-maker/nlp-metrics">NLP metrics</a></div></article><article class="card" data-search="textract textract"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/textract">Textract</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="translate translate"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/translate">Translate</a></h3><p class="whole">A single example covering the service.</p></article></div></div><div class="svc-group" id="management-infrastructure-as-code"><h2>Management &amp; infrastructure as code</h2><div class="svc-grid"><article class="card" data-search="appconfig appconfig feature flags feature-flags"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/appconfig">AppConfig</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/appconfig/feature-flags">Feature flags</a></div></article><article class="card" data-search="aws cli &amp; api techniques api aliases base64 chaining docker filters jp (jmespath) jq localstack query skeleton sts wait yq aliases base64 chaining docker filters jp jq localstack query skeleton sts wait yq"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api">AWS CLI &amp; API techniques</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/aliases">Aliases</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/base64">Base64</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/chaining">Chaining</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/docker">Docker</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/filters">Filters</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/jp">jp (JMESPath)</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/jq">jq</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/localstack">LocalStack</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/query">Query</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/skeleton">Skeleton</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/sts">STS</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/wait">Wait</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/api/yq">yq</a></div></article><article class="card" data-search="cloudformation cfn basic cfn-hup cfn-init creation policy cross reference stacks custom resource depends drift detection import intrinsic nested stacks prevent stack update pseudo quickstarts skip delete resource stack updates wait conditions basic cfn-hup cfn-init creation-policy cross-reference-stacks custom-resource depends drift-detection import intrinsic nested-stacks prevent-stack-update pseudo quickstarts skip-delete-resource stack-updates wait-conditions"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn">CloudFormation</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/basic">Basic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/cfn-hup">cfn-hup</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/cfn-init">cfn-init</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/creation-policy">Creation policy</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/cross-reference-stacks">Cross reference stacks</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/custom-resource">Custom resource</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/depends">Depends</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/drift-detection">Drift detection</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/import">Import</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/intrinsic">Intrinsic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/nested-stacks">Nested stacks</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/prevent-stack-update">Prevent stack update</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/pseudo">Pseudo</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/quickstarts">Quickstarts</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/skip-delete-resource">Skip delete resource</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/stack-updates">Stack updates</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cfn/wait-conditions">Wait conditions</a></div></article><article class="card" data-search="cloudtrail cloudtrail basic cloudwatch basic cloudwatch"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudtrail">CloudTrail</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudtrail/basic">Basic</a><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudtrail/cloudwatch">Cloudwatch</a></div></article><article class="card" data-search="cloudwatch cloudwatch logs logs"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudwatch">CloudWatch</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloudwatch/logs">Logs</a></div></article></div></div><div class="svc-group" id="developer-tools"><h2>Developer tools</h2><div class="svc-grid"><article class="card" data-search="cloud9 cloud9"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/cloud9">Cloud9</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="codepipeline codepipeline pipeline v1 v1"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/codepipeline">CodePipeline</a></h3><div class="tags"><a class="tag" href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/codepipeline/v1">Pipeline v1</a></div></article><article class="card" data-search="codewhisperer codewhisper"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/codewhisper">CodeWhisperer</a></h3><p class="whole">A single example covering the service.</p></article><article class="card" data-search="device farm device-farm"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/device-farm">Device Farm</a></h3><p class="whole">A single example covering the service.</p></article></div></div><div class="svc-group" id="media"><h2>Media</h2><div class="svc-grid"><article class="card" data-search="elastic transcoder elastic-transcoder"><h3><a href="https://github.com/ravindranmani1980/AWS_Examples/tree/main/elastic-transcoder">Elastic Transcoder</a></h3><p class="whole">A single example covering the service.</p></article></div></div>
+      <p class="no-results" id="empty" hidden>No examples match that search. Try a service name like "S3" or a feature like "encryption".</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <span class="credit">Examples adapted from ExamPro's AWS-Examples repository, used in their AWS certification courses.</span>
+  &copy; <span id="year">2026</span> Ravindran Mani. All rights reserved.
+</footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const btn=document.getElementById('navBtn'),links=document.getElementById('navlinks');
+btn.addEventListener('click',()=>{const open=links.classList.toggle('open');btn.setAttribute('aria-expanded',String(open))});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&links.classList.contains('open')){links.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.focus()}});
+(function(){
+  const input=document.getElementById('q'),count=document.getElementById('count'),empty=document.getElementById('empty');
+  const groups=[...document.querySelectorAll('.svc-group')];
+  input.addEventListener('input',()=>{
+    const terms=input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let shown=0;
+    groups.forEach(g=>{let any=false;
+      g.querySelectorAll('.card').forEach(c=>{const ok=terms.every(t=>c.dataset.search.includes(t));c.hidden=!ok;if(ok){any=true;shown++}});
+      g.hidden=!any;});
+    count.textContent=terms.length?shown+(shown===1?' service':' services'):'';
+    empty.hidden=shown!==0;
+  });
 })();
 </script>
-</body>
-</html>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "AWS Examples",
+  "url": "https://ravindran.in/aws-examples.html",
+  "author": {"@type": "Person", "name": "Ravindran Mani", "url": "https://ravindran.in/"},
+  "about": {"@type": "SoftwareSourceCode", "name": "AWS_Examples", "codeRepository": "https://github.com/ravindranmani1980/AWS_Examples"}
+}
+</script>
+</body></html>
