@@ -299,3 +299,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
 @media (max-width:380px){ .xh-metrics{ grid-template-columns:minmax(0,1fr); } }
 .xh-metric .num.word{ font-size:1.3rem; line-height:1.25; padding:4px 0 1px; }
 @media (max-width:560px){ .xh-metric .num.word{ font-size:1.05rem; } }
+
+/* Hands-on projects (ai-automation.html) */
+.cards.projects{ grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); }
+.cards.projects .card{ display:flex; flex-direction:column; }
+.cards.projects .card p{ flex:1; }
+.cards.projects h3 a{ color:inherit; text-decoration:none; border-bottom:1px solid transparent; }
+.cards.projects h3 a:hover, .cards.projects h3 a:focus-visible{ border-color:var(--accent); }
+.card-link{ align-self:flex-start; margin-top:16px; font-size:0.9rem; font-weight:500; color:var(--navy); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; }
+.card-link:hover, .card-link:focus-visible{ color:var(--ink); }
