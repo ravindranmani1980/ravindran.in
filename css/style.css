@@ -301,10 +301,14 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
 @media (max-width:560px){ .xh-metric .num.word{ font-size:1.05rem; } }
 
 /* Hands-on projects (ai-automation.html) */
-.cards.projects{ grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); }
+.proj-group{ font-family:'IBM Plex Mono', monospace; font-size:0.95rem; font-weight:500; color:var(--navy); margin:0 0 14px; }
+.proj-note{ color:var(--ink-soft); font-size:0.88rem; margin:-6px 0 16px; }
+.cards.projects + .proj-group{ margin-top:48px; }
+.cards.projects.two{ grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); }
 .cards.projects .card{ display:flex; flex-direction:column; }
 .cards.projects .card p{ flex:1; }
 .cards.projects h3 a{ color:inherit; text-decoration:none; border-bottom:1px solid transparent; }
 .cards.projects h3 a:hover, .cards.projects h3 a:focus-visible{ border-color:var(--accent); }
-.card-link{ align-self:flex-start; margin-top:16px; font-size:0.9rem; font-weight:500; color:var(--navy); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; }
+.card-links{ display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:16px; }
+.card-link{ font-size:0.9rem; font-weight:500; color:var(--navy); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; }
 .card-link:hover, .card-link:focus-visible{ color:var(--ink); }
