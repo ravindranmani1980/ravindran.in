@@ -318,3 +318,16 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
 .card-links{ display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:16px; }
 .card-link{ font-size:0.9rem; font-weight:500; color:var(--navy); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px; }
 .card-link:hover, .card-link:focus-visible{ color:var(--ink); }
+
+/* App demo pages (apps/<name>/) */
+.crumbs{ font-size:0.88rem; color:var(--ink-soft); margin-bottom:20px; }
+.crumbs a{ color:var(--navy); text-decoration:none; border-bottom:1px solid var(--accent); }
+.app-intro{ padding-bottom:48px; }
+.app-intro .proj-facts{ max-width:780px; }
+.app-intro .card-links{ margin-top:24px; }
+.app-stage{ padding:32px 16px 64px; }
+.app-frame{ max-width:1440px; margin:0 auto; border:1px solid #D9DDD3; border-radius:8px; overflow:hidden; background:#0B1220; box-shadow:0 12px 40px rgba(8,20,32,0.18); }
+.app-frame iframe{ display:block; width:100%; height:min(88vh, 1000px); min-height:560px; border:0; }
+.app-hint{ max-width:1440px; margin:12px auto 0; font-size:0.88rem; color:var(--ink-soft); }
+.app-hint a{ color:var(--navy); }
+@media (min-width:900px){ .app-hint{ display:none; } }

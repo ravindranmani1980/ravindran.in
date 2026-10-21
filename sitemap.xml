@@ -21,6 +21,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ravindran.in/apps/cloudparity/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ravindran.in/apps/cloudcostiq/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ravindran.in/apps/azureshield/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ravindran.in/apps/aws-sentinel/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ravindran.in/aws-examples.html</loc>
     <lastmod>2026-09-28</lastmod>
     <priority>0.8</priority>
