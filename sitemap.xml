@@ -37,6 +37,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ravindran.in/apps/cybershield/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://ravindran.in/aws-examples.html</loc>
     <lastmod>2026-09-28</lastmod>
     <priority>0.8</priority>
