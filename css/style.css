@@ -338,3 +338,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
 #cybershield{ scroll-margin-top:84px; }
 .app-intro .app-note{ margin:14px 0 0; max-width:780px; font-size:0.88rem; color:var(--ink-soft); }
 .app-intro .app-note a{ color:var(--navy); }
+
+/* AI & Projects: app sub-groups */
+.proj-sub{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; font-weight:500; letter-spacing:0.05em; text-transform:uppercase; color:var(--teal); margin:28px 0 10px; scroll-margin-top:84px; }
+.proj-note + .proj-sub{ margin-top:8px; }
+.cards.projects.apps.three{ grid-template-columns:repeat(3, 1fr); }
+.cards.projects.apps.three .proj-facts{ grid-template-columns:1fr; gap:2px; }
+.cards.projects.apps.three .proj-facts dd{ margin-bottom:10px; }
+@media (max-width:980px){ .cards.projects.apps.three{ grid-template-columns:1fr; } }
+#threatguard{ scroll-margin-top:84px; }
