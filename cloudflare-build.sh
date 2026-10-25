@@ -13,3 +13,6 @@ for f in * .[!.]*; do
   cp -R "$f" dist/
 done
 echo "Copied site to dist/: $(find dist -type f | wc -l) files"
+
+# Build the AI Studio apps from GitHub into dist/apps/<slug>/app/ (never fails the deploy).
+if [ -f _tools/build-apps.sh ]; then sh _tools/build-apps.sh || echo "build-apps step had a problem; existing app copies kept"; fi
