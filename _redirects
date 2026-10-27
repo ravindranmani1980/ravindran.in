@@ -1,0 +1,4 @@
+# The apps moved to apps.ravindran.in on 27 Oct 2026.
+/apps          https://apps.ravindran.in/           301
+/apps/         https://apps.ravindran.in/           301
+/apps/*        https://apps.ravindran.in/:splat     301

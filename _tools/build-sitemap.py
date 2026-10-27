@@ -2,9 +2,8 @@
 """build-sitemap.py - rebuilds sitemap.xml for ravindran.in.
 
 Run from the ravindran.in-main folder:   python3 _tools/build-sitemap.py
-Lists every page except folders starting with "_" or ".", the built apps (apps/*/app/),
-dist/, and pages marked noindex or that only redirect. App pages follow the order in
-_tools/apps.txt. lastmod is the file's modification date.
+Lists every page except folders starting with "_" or ".",
+dist/, and pages marked noindex or that only redirect. lastmod is the file's modification date.
 """
 import datetime, os, re
 from xml.sax.saxutils import escape
@@ -14,11 +13,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NAV_ORDER = ['index.html', 'about.html', 'expertise.html', 'technology.html', 'ai-automation.html',
              'aws-examples.html', 'experience.html', 'education.html', 'contact.html']
 
-app_order = []
-for line in open(os.path.join(ROOT, '_tools', 'apps.txt'), encoding='utf-8'):
-    line = line.strip()
-    if line and not line.startswith('#'):
-        app_order.append(line.split()[0])
 
 def skip(path):
     text = open(path, encoding='utf-8', errors='ignore').read()
@@ -28,8 +22,7 @@ def skip(path):
 entries = []
 for d, dirs, files in os.walk(ROOT):
     rel_d = os.path.relpath(d, ROOT).replace(os.sep, '/')
-    dirs[:] = sorted(x for x in dirs if not x.startswith(('_', '.')) and x != 'dist'
-                     and not (rel_d.startswith('apps/') and x == 'app'))
+    dirs[:] = sorted(x for x in dirs if not x.startswith(('_', '.')) and x != 'dist')
     for f in files:
         if not f.endswith('.html') or f == '404.html':
             continue
@@ -41,9 +34,6 @@ for d, dirs, files in os.walk(ROOT):
         lastmod = datetime.date.fromtimestamp(os.path.getmtime(path)).isoformat()
         if rel == 'index.html':
             pri, key = '1.0', (0, 0)
-        elif rel.startswith('apps/'):
-            slug = rel.split('/')[1]
-            pri, key = '0.7', (2, app_order.index(slug) if slug in app_order else 99)
         else:
             pri, key = '0.8', (1, NAV_ORDER.index(rel) if rel in NAV_ORDER else 99)
         entries.append((key, rel, url, lastmod, pri))

@@ -1,0 +1,8 @@
+{
+  "name": "ravindran-in-functions",
+  "private": true,
+  "description": "Cloudflare Pages Functions for ravindran.in",
+  "dependencies": {
+    "worker-mailer": "^1.3.0"
+  }
+}

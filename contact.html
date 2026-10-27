@@ -34,6 +34,22 @@
 <link rel="stylesheet" href="css/style.css?v=20261024">
 
 <noscript><style>@media(max-width:760px){nav.wrap{height:auto;padding-top:12px;padding-bottom:12px}.navtoggle{display:none}.navlinks{position:static;max-height:none;visibility:visible;width:100%}}</style></noscript>
+<style>
+.contact-form-wrap{ margin-top:44px; max-width:560px; }
+.contact-form-wrap h2{ font-size:1.15rem; margin-bottom:16px; }
+.contact-form .field{ margin-bottom:16px; display:flex; flex-direction:column; }
+.contact-form label{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--teal); margin-bottom:6px; }
+.contact-form input, .contact-form textarea{ font:inherit; padding:10px 12px; border:1px solid var(--line-soft); border-radius:6px; background:var(--paper); color:var(--ink); }
+.contact-form input:focus, .contact-form textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+.contact-form textarea{ resize:vertical; }
+.cf-hp{ position:absolute !important; left:-9999px !important; width:1px; height:1px; opacity:0; }
+.cf-submit{ font:inherit; font-weight:500; cursor:pointer; padding:11px 24px; border:0; border-radius:6px; background:var(--navy); color:#fff; }
+.cf-submit:hover{ background:var(--ink); }
+.cf-submit:disabled{ opacity:.6; cursor:default; }
+.cf-status{ margin-top:12px; font-size:0.9rem; min-height:1.2em; }
+.cf-status.ok{ color:var(--teal); }
+.cf-status.err{ color:#b4452f; }
+</style>
 </head><body><a class="skip-link" href="#main">Skip to content</a>
 <header class="site"><nav class="wrap" aria-label="Main navigation"><a class="brand" href="index.html">Ravindran <span>Mani</span></a><button type="button" class="navtoggle" aria-expanded="false" aria-controls="navlinks" id="navBtn">Menu</button><ul class="navlinks" id="navlinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="expertise.html">Expertise</a></li><li><a href="technology.html">Technology</a></li><li><a href="ai-automation.html">AI &amp; Projects</a></li><li><a href="experience.html">Experience</a></li><li><a href="education.html">Education</a></li><li><a href="https://notes.ravindran.in/" target="_blank" rel="noopener">Notes</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul></nav></header>
 <main id="main">
@@ -49,6 +65,17 @@
         <li><span class="label mono">Location</span><span>Miami, Florida</span></li>
         <li><span class="label mono">Executive Brief</span><a href="assets/Ravindran_Mani_Executive_Brief.pdf" download>Download PDF (2 pages)</a></li>
       </ul>
+      <div class="contact-form-wrap">
+        <h2>Send a message</h2>
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="200"></div>
+          <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254"></div>
+          <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" rows="5" required maxlength="5000"></textarea></div>
+          <input type="text" name="company" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="cf-submit">Send message</button>
+          <p id="cf-status" class="cf-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </section>
 </main>
@@ -86,5 +113,26 @@ if(location.pathname.endsWith('/')||location.pathname.endsWith('/index.html')){c
   ],
   "knowsAbout": ["IT Strategy", "Cloud Operations", "Microsoft Azure", "Amazon Web Services", "FinOps", "Cybersecurity", "GxP Compliance", "Disaster Recovery", "AI Automation"]
 }
+</script>
+<script>
+(function(){
+  var f=document.getElementById('contactForm'); if(!f) return;
+  var s=document.getElementById('cf-status');
+  var val=function(id){ var el=document.getElementById(id); return el?el.value:''; };
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn=f.querySelector('.cf-submit'); btn.disabled=true;
+    s.className='cf-status'; s.textContent='Sending\u2026';
+    var hp=f.querySelector('.cf-hp');
+    try{
+      var r=await fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({name:val('cf-name'),email:val('cf-email'),message:val('cf-message'),company:hp?hp.value:''})});
+      var d={}; try{ d=await r.json(); }catch(_){}
+      if(r.ok && d.ok){ f.reset(); s.className='cf-status ok'; s.textContent='Thanks \u2014 your message has been sent.'; }
+      else { s.className='cf-status err'; s.textContent=(d&&d.error)?d.error:'Something went wrong. Please email me directly.'; }
+    }catch(err){ s.className='cf-status err'; s.textContent='Network error. Please email me directly.'; }
+    finally{ btn.disabled=false; }
+  });
+})();
 </script>
 </body></html>
