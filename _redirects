@@ -1,4 +1,7 @@
 # The apps moved to apps.ravindran.in on 27 Oct 2026.
+/apps/azureshield     https://apps.ravindran.in/Maniq-Shield/       301
+/apps/azureshield/    https://apps.ravindran.in/Maniq-Shield/       301
+/apps/azureshield/*   https://apps.ravindran.in/Maniq-Shield/:splat 301
 /apps/aws-sentinel    https://apps.ravindran.in/Maniq-Watch/        301
 /apps/aws-sentinel/   https://apps.ravindran.in/Maniq-Watch/        301
 /apps/aws-sentinel/*  https://apps.ravindran.in/Maniq-Watch/:splat  301
